@@ -1,0 +1,280 @@
+{
+  "tested_on": "2026-10-25",
+  "engine": "TrueVector V6.2",
+  "sample_count": 10,
+  "scope": "Illustrative inputs, not a representative quality benchmark or competitor comparison",
+  "execution_device": "CPU (on a cloud host where a T4 was available; no CUDA computation used)",
+  "median_engine_seconds": 1.885,
+  "min_engine_seconds": 0.426,
+  "max_engine_seconds": 12.551,
+  "cases": [
+    {
+      "id": "01-versionfixer-badge",
+      "title": "VersionFixer badge",
+      "origin": "User-provided VersionFixer artwork",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "output_dimensions": [
+        1000,
+        1000
+      ],
+      "engine_seconds": 5.532,
+      "observed_cloud_wall_seconds": 15.869,
+      "svg_bytes": 7246,
+      "settings": {},
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.004959904644381809,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.923149195528831
+      },
+      "observation": "Clean badge result; subtle shading is simplified. Review small lettering.",
+      "test_note": "Soft shading and lettering. The source is normalized to a 1-megapixel working image by the production guard."
+    },
+    {
+      "id": "02-versionfixer-mark",
+      "title": "VersionFixer color mark",
+      "origin": "VersionFixer project-owned test asset",
+      "source_dimensions": [
+        1024,
+        1024
+      ],
+      "output_dimensions": [
+        1000,
+        1000
+      ],
+      "engine_seconds": 4.614,
+      "observed_cloud_wall_seconds": 14.511,
+      "svg_bytes": 7670,
+      "settings": {},
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.001225095013387842,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.9706961553921041
+      },
+      "observation": "Strong color-mark result; compare fine edges at zoom.",
+      "test_note": ""
+    },
+    {
+      "id": "03-ai-sun-mascot",
+      "title": "AI-generated shaded sun mascot",
+      "origin": "AI-generated test input; not customer artwork",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "output_dimensions": [
+        1000,
+        1000
+      ],
+      "engine_seconds": 12.551,
+      "observed_cloud_wall_seconds": 22.201,
+      "svg_bytes": 34833,
+      "settings": {
+        "color_mode": "gradients",
+        "gradient_mode": "on"
+      },
+      "internal_gate_passed": false,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.012599597062196004,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.8386757318132594
+      },
+      "observation": "REVIEW: internal quality gate not met. Shading, face details and highlights need inspection.",
+      "test_note": "A deliberately difficult shaded input. Look for changes in lighting, highlights and facial details, not just silhouette."
+    },
+    {
+      "id": "04-ai-botanical",
+      "title": "AI-generated botanical line art",
+      "origin": "AI-generated test input; not customer artwork",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "output_dimensions": [
+        1000,
+        1000
+      ],
+      "engine_seconds": 5.343,
+      "observed_cloud_wall_seconds": 15.904,
+      "svg_bytes": 117191,
+      "settings": {
+        "color_mode": "black_and_white",
+        "gradient_mode": "off"
+      },
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.01625265963606185,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.9583714977277635
+      },
+      "observation": "Good line-art outline; inspect the thinnest veins and small gaps.",
+      "test_note": "Thin internal lines and small gaps are the challenging details."
+    },
+    {
+      "id": "05-transparent-emblem",
+      "title": "Transparent emblem and cutout",
+      "origin": "Controlled geometric test fixture",
+      "source_dimensions": [
+        640,
+        640
+      ],
+      "output_dimensions": [
+        640,
+        640
+      ],
+      "engine_seconds": 1.721,
+      "observed_cloud_wall_seconds": 7.458,
+      "svg_bytes": 9017,
+      "settings": {
+        "transparent_bg": "keep",
+        "num_colors": 3,
+        "gradient_mode": "off"
+      },
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.019615176930147058,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.8904606286994149
+      },
+      "observation": "REVIEW: native alpha/cutouts remain, but the three-color setting changed the white foreground triangle to orange. Use the source and SVG to inspect color fidelity.",
+      "test_note": "Native transparent input. Checkerboard is display-only and is not baked into the SVG."
+    },
+    {
+      "id": "06-flat-palette",
+      "title": "Flat colors and right-angle geometry",
+      "origin": "Controlled geometric test fixture",
+      "source_dimensions": [
+        640,
+        640
+      ],
+      "output_dimensions": [
+        640,
+        640
+      ],
+      "engine_seconds": 1.676,
+      "observed_cloud_wall_seconds": 7.372,
+      "svg_bytes": 1638,
+      "settings": {
+        "color_mode": "custom_palette",
+        "custom_colors_hex": "#fffaf0, #0f766e, #f97316, #1e3a8a",
+        "num_colors": 4,
+        "gradient_mode": "off"
+      },
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.14827931921466506,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.9631303114286841
+      },
+      "observation": "REVIEW: shape gate passed but custom-palette color fidelity is visibly limited (RGB MAE 0.1483).",
+      "test_note": "Custom palette and shape preservation; this is not a customer logo."
+    },
+    {
+      "id": "07-lettering",
+      "title": "Lettering and small counters",
+      "origin": "Controlled typography test fixture",
+      "source_dimensions": [
+        800,
+        480
+      ],
+      "output_dimensions": [
+        800,
+        480
+      ],
+      "engine_seconds": 2.049,
+      "observed_cloud_wall_seconds": 7.643,
+      "svg_bytes": 11703,
+      "settings": {
+        "color_mode": "black_and_white",
+        "gradient_mode": "off"
+      },
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.006535311138344227,
+        "edge_f1_one_pixel_tolerance_higher_better": 1.0
+      },
+      "observation": "Lettering becomes paths, not editable font text. Compare small counters.",
+      "test_note": "The output is traced outlines, not recovered editable font text. Inspect small letter counters."
+    },
+    {
+      "id": "08-centerline-drawing",
+      "title": "Centerline technical sketch",
+      "origin": "Controlled line-network test fixture",
+      "source_dimensions": [
+        640,
+        480
+      ],
+      "output_dimensions": [
+        640,
+        480
+      ],
+      "engine_seconds": 0.622,
+      "observed_cloud_wall_seconds": 7.325,
+      "svg_bytes": 2121,
+      "settings": {
+        "color_mode": "black_and_white",
+        "path_mode": "centerline",
+        "gradient_mode": "off",
+        "centerline_stroke_width": 7.0
+      },
+      "internal_gate_passed": null,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.009062104268790849,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.9581065172431071
+      },
+      "observation": "SPECIAL MODE: single-line extraction; filled-mask gates are not a suitable pass/fail standard.",
+      "test_note": "Centerline extraction intentionally changes filled stroke geometry; similarity scores are not a fabrication-readiness certificate."
+    },
+    {
+      "id": "09-smooth-gradient",
+      "title": "Smooth two-color gradient",
+      "origin": "Controlled gradient test fixture",
+      "source_dimensions": [
+        640,
+        640
+      ],
+      "output_dimensions": [
+        640,
+        640
+      ],
+      "engine_seconds": 1.12,
+      "observed_cloud_wall_seconds": 7.704,
+      "svg_bytes": 797,
+      "settings": {
+        "color_mode": "gradients",
+        "gradient_mode": "on"
+      },
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.0016943487030228758,
+        "edge_f1_one_pixel_tolerance_higher_better": 1.0
+      },
+      "observation": "Good smooth-gradient result on this controlled input.",
+      "test_note": "Inspect whether the smooth color transition remains a gradient rather than many bands."
+    },
+    {
+      "id": "10-low-resolution-jpeg",
+      "title": "Low-resolution JPEG stress case",
+      "origin": "Controlled compressed raster test fixture",
+      "source_dimensions": [
+        112,
+        112
+      ],
+      "output_dimensions": [
+        112,
+        112
+      ],
+      "engine_seconds": 0.426,
+      "observed_cloud_wall_seconds": 17.145,
+      "svg_bytes": 1562,
+      "settings": {
+        "auto_deblock_jpeg": true
+      },
+      "internal_gate_passed": true,
+      "independent_metrics": {
+        "rgb_mae_0_to_1_lower_better": 0.03171289349072962,
+        "edge_f1_one_pixel_tolerance_higher_better": 0.7293778464033107
+      },
+      "observation": "REVIEW: compression and 112px source limit fine-detail recovery; source-comparison edge F1 is 0.7294.",
+      "test_note": "112×112 raster with JPEG artifacts, decoded losslessly to PNG for the test. No missing detail can be guaranteed to be recovered."
+    }
+  ]
+}
